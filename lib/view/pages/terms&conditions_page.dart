@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lms/view/components/shared/custom_appbar_text.dart';
 import 'package:lms/viewmodel/terms/cubit/terms_cubit.dart';
+import 'package:simple_html_css/simple_html_css.dart';
 
 class TermsAndConditions extends StatelessWidget {
   const TermsAndConditions({Key? key}) : super(key: key);
@@ -30,11 +32,22 @@ class TermsAndConditions extends StatelessWidget {
           return termsCubit.termsData == null
               ? const Center(
                   child: CircularProgressIndicator(
-                  color: Colors.deepOrange,
-                ))
+                    color: Colors.deepOrange,
+                  ),
+                )
               : SingleChildScrollView(
-                  child: Container(
-                    child: Text(termsCubit.termsData!.data!.terms!.toString()),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: RichText(
+                      text: HTML.toTextSpan(
+                        context,
+                        termsCubit.termsData!.data!.terms.toString(),
+                        defaultTextStyle: GoogleFonts.poppins(
+                          color: Colors.grey.withOpacity(1),
+                        ),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 );
         },

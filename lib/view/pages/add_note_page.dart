@@ -42,6 +42,10 @@ class AddNotePage extends StatelessWidget {
                 maxLines: 8,
               ),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blueGrey[200],
+                  fixedSize: const Size(90, 35),
+                ),
                 onPressed: () {},
                 child: const Text(
                   "+ Add",

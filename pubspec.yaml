@@ -40,6 +40,12 @@ dependencies:
   bloc: ^8.1.0
   flutter_bloc: ^8.1.1
   syncfusion_flutter_calendar: ^20.2.50
+  table_calendar: ^3.0.7
+  simple_html_css: ^4.0.0
+  expansion_widget: ^0.0.3
+  toggle_list: ^0.2.1
+  progress_indicator: ^0.2.2
+  top_snackbar_flutter: ^2.1.1
 
 dev_dependencies:
   flutter_test:
@@ -52,10 +58,10 @@ dev_dependencies:
   # rules and activating additional ones.
 
   flutter_lints: ^1.0.0
-#   flutter_native_splash: ^2.2.10+1
-# flutter_native_splash:
-#   color: "#FFFFFF"
-#   image: assets/images/logo.png
+  flutter_native_splash: ^2.2.10+1
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: assets/images/logo.png
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

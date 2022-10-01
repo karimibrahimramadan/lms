@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/view/components/shared/custom_content_card.dart';
 import 'package:lms/viewmodel/exam/cubit/exam_cubit.dart';
-
 import '../components/shared/custom_appbar_text.dart';
 import '../components/shared/custom_filter_button.dart';
 
@@ -25,7 +24,15 @@ class FinalsPage extends StatelessWidget {
             Navigator.of(context).pop();
           },
         ),
-        actions: [customFilter()],
+        actions: const [
+          CustomFilterButton(
+            popupMenuItems: [
+              PopupMenuItem(child: Text("All Finals")),
+              PopupMenuItem(child: Text("Finished Finals")),
+              PopupMenuItem(child: Text("Remaining Finals")),
+            ],
+          ),
+        ],
       ),
       body: BlocBuilder<ExamCubit, ExamState>(
         bloc: BlocProvider.of<ExamCubit>(context)..getData(),
@@ -39,14 +46,17 @@ class FinalsPage extends StatelessWidget {
                 )
               : ListView.builder(
                   itemBuilder: (context, index) {
-                    return CustomContentCard(
-                        text: examCubit.examData!.data![index].examSubject
-                            .toString(),
-                        startTime: examCubit
-                            .examData!.data![index].examStartTime
-                            .toString(),
-                        endTime: examCubit.examData!.data![index].examEndTime
-                            .toString());
+                    return examCubit.examData!.data![index].isFinal == true
+                        ? CustomContentCard(
+                            text: examCubit.examData!.data![index].examSubject
+                                .toString(),
+                            startTime: examCubit
+                                .examData!.data![index].examStartTime
+                                .toString(),
+                            endTime: examCubit
+                                .examData!.data![index].examEndTime
+                                .toString())
+                        : const SizedBox();
                   },
                   itemCount: examCubit.examData!.data!.length,
                 );

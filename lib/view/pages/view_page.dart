@@ -7,6 +7,7 @@ import 'package:lms/viewmodel/home/cubit/home_cubit.dart';
 import 'package:lms/viewmodel/lectures/cubit/lecture_cubit.dart';
 import 'package:lms/viewmodel/login/cubit/login_cubit.dart';
 import 'package:lms/viewmodel/sections/cubit/sections_cubit.dart';
+import 'package:lms/viewmodel/signup/cubit/signup_cubit.dart';
 import 'package:lms/viewmodel/terms/cubit/terms_cubit.dart';
 
 class MyApp extends StatelessWidget {
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ExamCubit()),
         BlocProvider(create: (context) => HomeCubit()),
         BlocProvider(create: (context) => TermsCubit()),
+        BlocProvider(create: (context) => SignupCubit()),
       ],
       child: const MaterialApp(
         home: Login(),

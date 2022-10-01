@@ -19,8 +19,9 @@ class CustomButton extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(8),
         border: Border.all(
+          color: Colors.deepOrange,
           width: 1,
           // color: borderColor,
         ),

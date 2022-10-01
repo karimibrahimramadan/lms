@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lms/view/pages/home.dart';
 import 'package:lms/view/pages/signup_page.dart';
 import 'package:lms/viewmodel/login/cubit/login_cubit.dart';
 import '../components/shared/custom_button.dart';
@@ -9,7 +8,6 @@ import '../components/shared/custom_textform_field.dart';
 
 class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
-  final bool isVisible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -31,16 +29,18 @@ class Login extends StatelessWidget {
                         Text(
                           "Orange ",
                           style: GoogleFonts.poppins(
-                              color: Colors.orange[800],
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24),
+                            color: Colors.deepOrange,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                          ),
                         ),
                         Text(
                           "Digital Center",
                           style: GoogleFonts.poppins(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24),
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                          ),
                         ),
                       ],
                     ),
@@ -51,18 +51,24 @@ class Login extends StatelessWidget {
                           fontSize: 24, fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(height: 16),
-                    const CustomTextField(
-                      text: "E-Mail",
+                    CustomTextField(
+                      controller: loginCubit.emailController,
+                      labelText: "E-Mail",
+                      textInputType: TextInputType.emailAddress,
                       isSecure: false,
                     ),
                     const SizedBox(height: 16),
                     CustomTextField(
-                      text: "Password",
-                      iconData:
-                          isVisible ? Icons.visibility : Icons.visibility_off,
-                      color: Colors.orange[800],
-                      isSecure: isVisible,
-                      onPressed: () {},
+                      controller: loginCubit.passwordController,
+                      labelText: "Password",
+                      iconData: loginCubit.isVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                      color: Colors.deepOrange,
+                      isSecure: loginCubit.isVisible,
+                      onPressed: () {
+                        loginCubit.changeVisibilty();
+                      },
                     ),
                     const SizedBox(height: 16),
                     Text(
@@ -70,21 +76,18 @@ class Login extends StatelessWidget {
                       style: GoogleFonts.poppins(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
-                        color: Colors.orange[800],
+                        color: Colors.deepOrange,
                         decoration: TextDecoration.underline,
                       ),
                     ),
                     const SizedBox(height: 80),
                     CustomButton(
                       onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (_) => const Home()),
-                        );
-                        // loginCubit.login();
+                        loginCubit.login(context);
                       },
                       text: "Login",
                       textColor: Colors.white,
-                      primaryColor: Colors.orange[800],
+                      primaryColor: Colors.deepOrange,
                     ),
                     const SizedBox(
                       height: 16,
@@ -117,11 +120,13 @@ class Login extends StatelessWidget {
                     CustomButton(
                       onPressed: () {
                         Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (_) => SignUp()),
+                          MaterialPageRoute(
+                            builder: (_) => SignUp(),
+                          ),
                         );
                       },
                       text: "Sign Up",
-                      textColor: Colors.orange[800],
+                      textColor: Colors.deepOrange,
                       primaryColor: Colors.white,
                     ),
                     const SizedBox(height: 72),

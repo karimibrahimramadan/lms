@@ -25,42 +25,42 @@ class SectionsPage extends StatelessWidget {
             Navigator.of(context).pop();
           },
         ),
-        actions: [customFilter()],
+        actions: const [
+          CustomFilterButton(
+            popupMenuItems: [
+              PopupMenuItem(child: Text("All Sections")),
+              PopupMenuItem(child: Text("Finished Sections")),
+              PopupMenuItem(child: Text("Remaining Sections")),
+            ],
+          ),
+        ],
       ),
       body: BlocBuilder<SectionsCubit, SectionsState>(
-        bloc: BlocProvider.of<SectionsCubit>(context),
+        bloc: BlocProvider.of<SectionsCubit>(context)..getData(),
         builder: (context, state) {
-          SectionsCubit sectionsCubit = BlocProvider.of(context)..getData();
+          SectionsCubit sectionsCubit = BlocProvider.of(context);
           return sectionsCubit.sectionData == null
               ? const Center(
                   child: CircularProgressIndicator(
                     color: Colors.deepOrange,
                   ),
                 )
-              : ListView.separated(
+              : ListView.builder(
                   shrinkWrap: true,
                   itemCount: sectionsCubit.sectionData!.data!.length,
                   itemBuilder: (context, index) {
-                    return Expanded(
-                      child: CustomContentCard(
-                        text: sectionsCubit
-                            .sectionData!.data![index].sectionSubject
-                            .toString(),
-                        startTime: sectionsCubit
-                            .sectionData!.data![index].sectionStartTime
-                            .toString(),
-                        endTime: sectionsCubit
-                            .sectionData!.data![index].sectionEndTime
-                            .toString(),
-                      ),
+                    return CustomContentCard(
+                      text: sectionsCubit
+                          .sectionData!.data![index].sectionSubject
+                          .toString(),
+                      startTime: sectionsCubit
+                          .sectionData!.data![index].sectionStartTime
+                          .toString(),
+                      endTime: sectionsCubit
+                          .sectionData!.data![index].sectionEndTime
+                          .toString(),
                     );
                   },
-                  separatorBuilder: (contextm, index) {
-                    return const SizedBox(
-                      height: 16,
-                    );
-                  },
-                  // itemCount:
                 );
         },
       ),

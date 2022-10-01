@@ -28,11 +28,30 @@ class OurPartnersPage extends StatelessWidget {
         child: Container(
           height: 300,
           decoration: BoxDecoration(
-              color: Colors.grey[400],
-              image: const DecorationImage(
-                image: AssetImage("assets/images/logo.png"),
+            gradient: const LinearGradient(
+              colors: [
+                Colors.grey,
+                Colors.white,
+                Colors.grey,
+              ],
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.2),
+                spreadRadius: 10,
+                blurRadius: 10,
               ),
-              borderRadius: BorderRadius.circular(16)),
+            ],
+            color: Colors.grey[400],
+            image: const DecorationImage(
+              image: AssetImage(
+                "assets/images/logo.png",
+              ),
+            ),
+            borderRadius: BorderRadius.circular(16),
+          ),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -45,9 +64,10 @@ class OurPartnersPage extends StatelessWidget {
                     Text(
                       "ODCs",
                       style: GoogleFonts.poppins(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold),
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),

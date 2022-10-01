@@ -1,14 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:google_fonts/google_fonts.dart';
 import 'package:lms/view/components/shared/custom_appbar_text.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lms/view/components/shared/custom_content_card.dart';
 import 'package:lms/view/components/shared/custom_filter_button.dart';
 import 'package:lms/viewmodel/lectures/cubit/lecture_cubit.dart';
 
 class LecturesPage extends StatelessWidget {
   const LecturesPage({Key? key}) : super(key: key);
+
+  final List<PopupMenuItem> popupMenuButtons = const [
+    PopupMenuItem(
+      child: Text(
+        "All Finals",
+      ),
+    ),
+    PopupMenuItem(
+      child: Text(
+        "Finished Finals",
+      ),
+    ),
+    PopupMenuItem(
+      child: Text(
+        "Remaining Finals",
+      ),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +43,15 @@ class LecturesPage extends StatelessWidget {
             Navigator.of(context).pop();
           },
         ),
-        actions: [customFilter()],
+        actions: const [
+          CustomFilterButton(
+            popupMenuItems: [
+              PopupMenuItem(child: Text("All Lectures")),
+              PopupMenuItem(child: Text("Finished Lectures")),
+              PopupMenuItem(child: Text("Remaining Lectures")),
+            ],
+          ),
+        ],
       ),
       body: BlocBuilder(
         bloc: BlocProvider.of<LectureCubit>(context)..getData(),
@@ -40,6 +64,7 @@ class LecturesPage extends StatelessWidget {
                   ),
                 )
               : ListView.builder(
+                  shrinkWrap: true,
                   itemCount: lectureCubit.lectureData!.data!.length,
                   itemBuilder: (BuildContext context, int index) {
                     return lectureCubit.lectureData == null

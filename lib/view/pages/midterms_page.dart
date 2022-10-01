@@ -25,7 +25,15 @@ class MidtermsPage extends StatelessWidget {
             Navigator.of(context).pop();
           },
         ),
-        actions: [customFilter()],
+        actions: const [
+          CustomFilterButton(
+            popupMenuItems: [
+              PopupMenuItem(child: Text("All Midterms")),
+              PopupMenuItem(child: Text("Finished Midterms")),
+              PopupMenuItem(child: Text("Remaining Midterms")),
+            ],
+          ),
+        ],
       ),
       body: BlocBuilder<ExamCubit, ExamState>(
         bloc: BlocProvider.of<ExamCubit>(context)..getData(),
@@ -39,14 +47,18 @@ class MidtermsPage extends StatelessWidget {
                 )
               : ListView.builder(
                   itemBuilder: (context, index) {
-                    return CustomContentCard(
-                      text: examCubit.examData!.data![index].examSubject
-                          .toString(),
-                      startTime: examCubit.examData!.data![index].examStartTime
-                          .toString(),
-                      endTime: examCubit.examData!.data![index].examEndTime
-                          .toString(),
-                    );
+                    return examCubit.examData!.data![index].isFinal == false
+                        ? CustomContentCard(
+                            text: examCubit.examData!.data![index].examSubject
+                                .toString(),
+                            startTime: examCubit
+                                .examData!.data![index].examStartTime
+                                .toString(),
+                            endTime: examCubit
+                                .examData!.data![index].examEndTime
+                                .toString(),
+                          )
+                        : const SizedBox();
                   },
                   itemCount: examCubit.examData!.data!.length);
         },

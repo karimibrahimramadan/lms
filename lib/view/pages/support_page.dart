@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lms/view/components/shared/custom_appbar_text.dart';
+import 'package:lms/view/components/shared/custom_button.dart';
+import 'package:lms/view/components/support/support_textformfield.dart';
 
 class SupportPage extends StatelessWidget {
   const SupportPage({Key? key}) : super(key: key);
@@ -25,65 +26,34 @@ class SupportPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            const SupportTextformField(
-              iconData: Icons.person,
-            ),
-            const SupportTextformField(iconData: Icons.email),
-            const SupportTextformField(
-              maxLines: 8,
-            ),
-            Container(
-              height: 45,
-              margin: const EdgeInsets.symmetric(vertical: 32),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: Colors.deepOrange,
-                  borderRadius: BorderRadius.circular(8)),
-              child: MaterialButton(
-                onPressed: () {},
-                child: Text(
-                  "Submit",
-                  style: GoogleFonts.poppins(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SupportTextformField(
+                iconData: Icons.person,
+                hintText: "Name",
               ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class SupportTextformField extends StatelessWidget {
-  final IconData? iconData;
-  final int? maxLines;
-  final String? hintText;
-  const SupportTextformField({
-    Key? key,
-    this.iconData,
-    this.hintText,
-    this.maxLines,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: TextFormField(
-        decoration: InputDecoration(
-            hintText: hintText,
-            prefixIcon: Icon(iconData),
-            border: OutlineInputBorder(
-                // borderRadius: BorderRadius.circular(32),
+              const SupportTextformField(
+                iconData: Icons.email,
+                hintText: "E-Mail",
+              ),
+              const SupportTextformField(
+                hintText: "What's making you unhappy?",
+                maxLines: 8,
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
+                child: CustomButton(
+                  text: "Submit",
+                  onPressed: () {},
+                  primaryColor: Colors.deepOrange,
+                  textColor: Colors.white,
                 ),
-            enabledBorder: OutlineInputBorder()),
-        maxLines: maxLines,
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

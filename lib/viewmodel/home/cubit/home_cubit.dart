@@ -12,5 +12,6 @@ class HomeCubit extends Cubit<HomeState> {
 
   void onTap(int index) {
     index = currentIndex;
+    emit(HomeChanged());
   }
 }

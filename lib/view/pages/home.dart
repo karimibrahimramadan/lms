@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:lms/view/pages/home_page.dart';
 import 'package:lms/view/pages/news_page.dart';
 import 'package:lms/view/pages/settings.dart';
-// import 'package:lms/viewmodel/home/cubit/home_cubit.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -40,17 +42,20 @@ class _HomeState extends State<Home> {
           padding: const EdgeInsets.all(40),
           activeColor: Colors.deepOrange,
           curve: Curves.easeIn,
-          tabs: const [
+          tabs: [
             GButton(
               icon: Icons.home,
+              leading: SvgPicture.asset("assets/icons/home.svg"),
               text: "Home",
             ),
-            GButton(
-              icon: Icons.fiber_new_sharp,
+            const GButton(
+              icon: Icons.newspaper_outlined,
+              iconColor: Colors.deepOrange,
               text: "News",
             ),
             GButton(
               icon: Icons.settings,
+              leading: SvgPicture.asset("assets/icons/settings.svg"),
               text: "Settings",
             ),
           ],

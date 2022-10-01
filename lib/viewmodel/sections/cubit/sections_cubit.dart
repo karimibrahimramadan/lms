@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lms/constants.dart';
 import 'package:lms/model/section_model.dart';
 import 'package:lms/viewmodel/database/network/dio_helper.dart';
@@ -10,7 +11,7 @@ part 'sections_state.dart';
 class SectionsCubit extends Cubit<SectionsState> {
   SectionsCubit() : super(SectionsInitial());
 
-  static SectionsCubit get(context) => SectionsCubit();
+  static SectionsCubit get(context) => BlocProvider.of(context);
   SectionModel? sectionData;
 
   void getData() {

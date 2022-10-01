@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lms/view/components/shared/custom_appbar_text.dart';
-// import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class EventsPage extends StatelessWidget {
   const EventsPage({Key? key}) : super(key: key);
@@ -22,11 +22,9 @@ class EventsPage extends StatelessWidget {
           },
         ),
       ),
-      // body: Container(
-      //   child: SfCalendar(
-      //     view: CalendarView.month,
-      //   ),
-      // ),
+      body: SfCalendar(
+        view: CalendarView.month,
+      ),
     );
   }
 }
